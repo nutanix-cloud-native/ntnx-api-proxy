@@ -1,0 +1,23 @@
+http:
+  routers:
+    pe:
+      entryPoints:
+        - "websecure"
+      rule: "Host(`proxy-pe.nxlab.fr`) && PathPrefix(`/api`)"
+      service: nutanix-pe
+      tls: {}
+    pc:
+      entryPoints:
+        - "websecure"
+      rule: "Host(`proxy-pc.nxlab.fr`) && PathPrefix(`/api`)"
+      service: nutanix-pc
+      tls: {}
+  services:
+    nutanix-pe:
+      loadBalancer:
+        servers:
+          - url: "https://cloud-prod.nxlab.fr:9440"
+    nutanix-pc:
+      loadBalancer:
+        servers:
+          - url: "https://pc-prod.nxlab.fr:9440"
