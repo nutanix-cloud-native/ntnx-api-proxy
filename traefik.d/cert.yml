@@ -2,5 +2,5 @@ tls:
   stores:
     default:
       defaultCertificate:
-        certFile: /etc/traefik/cert.cer
-        keyFile: /etc/traefik/cert.key
+        certFile: /etc/traefik/cert/proxy.cer
+        keyFile: /etc/traefik/cert/proxy.key

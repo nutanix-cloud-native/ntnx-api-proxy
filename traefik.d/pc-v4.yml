@@ -1,0 +1,69 @@
+# GET url
+{{ $GETendpoints := list
+"/api/prism/v4.0.a1/config/tasks"
+"/api/storage/v4.0.a3/config/volume-groups/"
+"/api/prism/v4.0.a1/config/categories"
+"/api/dataprotection/v4.0.a3/config/recovery-points"
+"/api/clustermgmt/v4.0.a2/config/clusters"
+"/api/networking/v4.0.a1/config/subnets"
+"/api/vmm/v4.0.a1/images"
+"/api/vmm/v4.0.a1/ahv/config/vms"
+}}
+
+# POST url
+{{ $POSTendpoints := list
+"/api/storage/v4.0.a3/config/volume-groups"
+"/api/prism/v4.0.a1/config/categories"
+"/api/dataprotection/v4.0.a3/config/recovery-points"
+"/api/vmm/v4.0.a1/ahv/config/vms"
+"/api/vmm/v4.0.a1/images"
+}}
+
+# PUT url
+{{ $PUTendpoints := list
+"/api/vmm/v4.0.a1/ahv/config/vms"
+}}
+
+# PATCH url
+{{ $PATCHendpoints := list
+"/api/storage/v4.0.a3/config/volume-groups"
+}}
+
+# DELETE url
+{{ $DELETEendpoints := list
+"/api/storage/v4.0.a3/config/volume-groups"
+"/api/vmm/v4.0.a1/ahv/config/vms"
+"/api/vmm/v4.0.a1/images"
+}}
+
+{{define "route"}}
+    {{ randAlphaNum 10 }}:
+      entryPoints:
+        - "proxy"
+      rule: "Host(`{{ default "FQDN_not_configured" (env "FQDN") }}`) && PathPrefix(`{{.Prefix}}`) && Method(`{{.Method}}`)"
+      service: nutanix-pc
+      tls: {}
+{{ if eq (env "AUTH_PROXY") "enable"}}
+      middlewares:
+        - auth
+        - authBackend
+{{end}}
+{{end}}
+
+http:
+  routers:
+{{range $prefix := $GETendpoints}}
+{{ template "route" dict "Prefix" $prefix "Method" "GET"}}
+{{end}}
+{{range $prefix := $POSTendpoints}}
+{{ template "route" dict "Prefix" $prefix "Method" "POST"}}
+{{end}}
+{{range $prefix := $PUTendpoints}}
+{{ template "route" dict "Prefix" $prefix "Method" "PUT"}}
+{{end}}
+{{range $prefix := $PATCHendpoints}}
+{{ template "route" dict "Prefix" $prefix "Method" "PATCH"}}
+{{end}}
+{{range $prefix := $DELETEendpoints}}
+{{ template "route" dict "Prefix" $prefix "Method" "DELETE"}}
+{{end}}

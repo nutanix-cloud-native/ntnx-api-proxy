@@ -1,0 +1,14 @@
+{{ if eq (env "DASHBOARD") "enable" }}
+http:
+  routers:
+    dashboard:
+      rule: (Host(`{{ default "FQDN_not_configured" (env "FQDN") }}`) && PathPrefix(`/api`) || PathPrefix(`/dashboard`))
+      service: api@internal
+      entryPoints:
+        - "proxy"
+      tls: {}
+{{ if eq (env "AUTH_PROXY") "enable"}}
+      middlewares:
+        - auth
+{{end}}
+{{end}}

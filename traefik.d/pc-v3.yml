@@ -1,0 +1,70 @@
+# GET url
+{{ $GETendpoints := list
+"/api/nutanix/v3/users/me"
+"/api/nutanix/v3/versions"
+"/api/nutanix/v3/prism_central"
+"/api/nutanix/v3/categories"
+"/api/nutanix/v3/vms"
+"/api/nutanix/v3/clusters"
+"/api/nutanix/v3/subnets"
+"/api/nutanix/v3/images"
+"/api/nutanix/v3/tasks"
+}}
+
+# POST url
+{{ $POSTendpoints := list
+"/api/nutanix/v3/vms/list"
+"/api/nutanix/v3/clusters/list"
+"/api/nutanix/v3/subnets/list"
+"/api/nutanix/v3/images/list"
+"/api/nutanix/v3/hosts/list"
+"/api/nutanix/v3/projects/list"
+"/api/nutanix/v3/vms"
+"/api/nutanix/v3/images"
+"/api/nutanix/v3/categories/kubernetes-io-cluster"
+"/api/nutanix/v3/groups"
+}}
+
+# PUT url
+{{ $PUTendpoints := list
+"/api/nutanix/v3/categories/KubernetesClusterName"
+"/api/nutanix/v3/categories/kubernetes-io-cluster"
+"/api/nutanix/v3/images/"
+}}
+
+# DELETE url
+{{ $DELETEendpoints := list
+"/api/nutanix/v3/categories/KubernetesClusterName"
+"/api/nutanix/v3/categories/kubernetes-io-cluster"
+"/api/nutanix/v3/vms"
+"/api/nutanix/v3/images"
+}}
+
+{{define "route"}}
+    {{ randAlphaNum 10 }}:
+      entryPoints:
+        - "proxy"
+      rule: "Host(`{{ default "FQDN_not_configured" (env "FQDN") }}`) && PathPrefix(`{{.Prefix}}`) && Method(`{{.Method}}`)"
+      service: nutanix-pc
+      tls: {}
+{{ if eq (env "AUTH_PROXY") "enable"}}
+      middlewares:
+        - auth
+        - authBackend
+{{end}}
+{{end}}
+
+http:
+  routers:
+{{range $prefix := $GETendpoints}}
+{{ template "route" dict "Prefix" $prefix "Method" "GET"}}
+{{end}}
+{{range $prefix := $POSTendpoints}}
+{{ template "route" dict "Prefix" $prefix "Method" "POST"}}
+{{end}}
+{{range $prefix := $PUTendpoints}}
+{{ template "route" dict "Prefix" $prefix "Method" "PUT"}}
+{{end}}
+{{range $prefix := $DELETEendpoints}}
+{{ template "route" dict "Prefix" $prefix "Method" "DELETE"}}
+{{end}}

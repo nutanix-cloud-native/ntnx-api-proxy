@@ -1,0 +1,6 @@
+http:
+  services:
+    nutanix-pc:
+      loadBalancer:
+        servers:
+          - url: "https://{{ default "NUTANIX_ENDPOINT_not_configured" (env "NUTANIX_ENDPOINT") }}:{{ default "9440" (env "NUTANIX_PORT") }}"
