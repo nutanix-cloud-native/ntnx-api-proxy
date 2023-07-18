@@ -1,0 +1,44 @@
+name: Trivy Scan
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 17 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    permissions:
+      contents: read
+      security-events: write
+    name: Scan
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Get repository name
+        run: echo "REPOSITORY_NAME=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
+
+
+      - name: Build container
+        env:
+          KO_DOCKER_REPO: ko.local
+          PLATFORMS: linux/amd64,linux/arm64,linux/arm
+        run: |
+          docker build -t ${{ env.REPOSITORY_NAME }}:${{ github.sha }} .
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@0.11.2
+        with:
+          image-ref: "${{ env.REPOSITORY_NAME }}:${{ github.sha }}"
+          format: "sarif"
+          output: "trivy-results.sarif"
+          severity: "CRITICAL,HIGH"
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: "trivy-results.sarif"

@@ -1,0 +1,22 @@
+name: Black Duck Policy Check
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+
+jobs:
+  security:
+    if: github.repository == 'nutanix-cloud-native/ntnx-api-proxy'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Run Synopsys Detect
+        uses: synopsys-sig/detect-action@v0.3.4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          detect-version: 8.10.0
+          blackduck-url: ${{ secrets.BLACKDUCK_URL }}
+          blackduck-api-token: ${{ secrets.BLACKDUCK_API_TOKEN }}
