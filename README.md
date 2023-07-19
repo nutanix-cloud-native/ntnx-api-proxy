@@ -4,7 +4,7 @@ This tool allows the concentration of Prism Central API calls to a single point 
 
 This tool has been validated with the following components:
 
-PC v2 API
+PC v1 & v2 API
 - CSI 3.0
 
 PC v3 API:
@@ -49,9 +49,9 @@ services:
 
 Valid certificate files are required in the file locations below:
 
-`/etc/traefik/cert/proxy.cer`: Certificate used by the proxy to expose the service
+`/etc/traefik/cert/tls.crt`: Certificate used by the proxy to expose the service
 
-`/etc/traefik/cert/proxy.key`:  Key related to the proxy certificate
+`/etc/traefik/cert/tls.key`:  Key related to the proxy certificate
 
 
 
@@ -80,7 +80,7 @@ Backend connection is configured using the following env variables:
 Advanced configuration is possible using the following env variables:
 
 | Name                                        | Description                                         | Mandatory | Default |
-| ------------------------------------------- | --------------------------------------------------- | --------- | ------- |
+|---------------------------------------------|-----------------------------------------------------|-----------|---------|
 | AUTH_PROXY                                  | Set authentication circuit breaker (enable/disable) | false     | disable |
 | DASHBOARD                                   | Set dashboard (enable/disable)                      | false     | disable |
 | TRAEFIK_LOG_LEVEL                           | Log level of proxy logs                             | false     | error   |
@@ -97,7 +97,7 @@ Advanced configuration is possible using the following env variables:
 
 If you want to validate your backend server against an internal CA you need to set the env `TRAEFIK_SERVERSTRANSPORT_ROOTCAS` with your CA file path and present the corresponding file in your container.
 
-ex: `TRAEFIK_SERVERSTRANSPORT_ROOTCAS=/etc/traefik/cert/ca.cer`
+ex: `TRAEFIK_SERVERSTRANSPORT_ROOTCAS=/etc/traefik/cert/ca.crt`
 
 
 
