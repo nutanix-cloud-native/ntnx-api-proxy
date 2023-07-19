@@ -27,6 +27,8 @@ PC v4 API:
 - CSI 3.0
 - vm-operator (beta)
 
+*** potential issue with v4 SDK and Auth Proxy ***
+
 ## How to use this image
 
 Start a `ntnx-api-proxy` instance via [`docker-compose`](https://github.com/docker/compose) or [`docker stack deploy`](https://docs.docker.com/engine/reference/commandline/stack_deploy/)
