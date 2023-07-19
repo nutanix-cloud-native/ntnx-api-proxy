@@ -1,5 +1,15 @@
 # ntnx-api-proxy
 
+---
+
+[![CI](https://github.com/nutanix-cloud-native/ntnx-api-proxy/actions/workflows/ci.yaml/badge.svg)](https://github.com/nutanix-cloud-native/ntnx-api-proxy/actions/workflows/ci.yaml)
+
+[![release](https://img.shields.io/github/release-pre/nutanix-cloud-native/ntnx-api-proxy.svg)](https://github.com/nutanix-cloud-native/ntnx-api-proxy/releases)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/nutanix-cloud-native/ntnx-api-proxy/blob/master/LICENSE)
+[![Releases](https://img.shields.io/github/downloads/nutanix-cloud-native/ntnx-api-proxy/total.svg)](https://github.com/nutanix-cloud-native/ntnx-api-proxy/releases)
+
+---
+
 This tool allows the concentration of Prism Central API calls to a single point to simplify filtering and limit access.
 
 This tool has been validated with the following components:
