@@ -7,8 +7,4 @@ http:
       entryPoints:
         - "proxy"
       tls: {}
-{{ if eq (env "AUTH_PROXY") "enable"}}
-      middlewares:
-        - auth
-{{end}}
 {{end}}

@@ -84,20 +84,17 @@ Backend connection is configured using the following env variables:
 |------------------|--------------------------------------------------------------|-----------|---------|
 | NUTANIX_ENDPOINT | Fully Qualified Domain Name used to connect to Prism Central | true      | *none*  |
 | NUTANIX_PORT     | Port to connect to Prism Central                             | false     | 9440    |
-| NUTANIX_USERNAME | Username to connect to Prism Central if AUTH_PROXY enable    | false     | admin   |
-| NUTANIX_PASSWORD | Password to connect to Prism Central if AUTH_PROXY enable    | false     | *none*  |
 
 
 
 Advanced configuration is possible using the following env variables:
 
-| Name                                        | Description                                         | Mandatory | Default |
-|---------------------------------------------|-----------------------------------------------------|-----------|---------|
-| AUTH_PROXY                                  | Set authentication circuit breaker (enable/disable) | false     | disable |
-| DASHBOARD                                   | Set dashboard (enable/disable)                      | false     | disable |
-| TRAEFIK_LOG_LEVEL                           | Log level of proxy logs                             | false     | error   |
-| TRAEFIK_SERVERSTRANSPORT_ROOTCAS            | Path of the CA file to validate backend             | false     | *none*  |
-| TRAEFIK_SERVERSTRANSPORT_INSECURESKIPVERIFY | Disable SSL certificate verification                | false     | false   |
+| Name                                        | Description                             | Mandatory | Default |
+|---------------------------------------------|-----------------------------------------|-----------|---------|
+| DASHBOARD                                   | Set dashboard (enable/disable)          | false     | disable |
+| TRAEFIK_LOG_LEVEL                           | Log level of proxy logs                 | false     | error   |
+| TRAEFIK_SERVERSTRANSPORT_ROOTCAS            | Path of the CA file to validate backend | false     | *none*  |
+| TRAEFIK_SERVERSTRANSPORT_INSECURESKIPVERIFY | Disable SSL certificate verification    | false     | false   |
 
 
 
@@ -113,24 +110,11 @@ ex: `TRAEFIK_SERVERSTRANSPORT_ROOTCAS=/etc/traefik/cert/ca.crt`
 
 
 
-#### Authentication circuit breaker
-
-You can decide to implement separate authentication at the proxy level. To do this, follow the procedure below:
-
-- Create a file that contains the authorized users for the proxy. The file content is a list of `name:hashed-password`. Passwords must be hashed using MD5, SHA1, or BCrypt (use `htpasswd` to generate the passwords).
-- Provide the file in the following path `/etc/traefik/auth/usersfile`.
-- Set `NUTANIX_USERNAME` and `NUTANIX_PASSWORD` env to connect to the backend Prism Central.
-- Set  `AUTH_PROXY` env to `enable`.
-
-
-
 #### Proxy Dashboard
 
 You can enable the proxy dashboard by setting `DASHBOARD` to `enable`.
 
 Proxy will be available at the following address: `https://FQDN:9440/dashboard/`
-
-If `AUTH_PROXY` is enabled the same users will be used to connect to the dashboard.
 
 
 
