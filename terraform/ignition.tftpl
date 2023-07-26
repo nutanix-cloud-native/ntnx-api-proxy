@@ -1,0 +1,54 @@
+variant: flatcar
+version: 1.0.0
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys: 
+      - ${ssh_key}
+storage:
+  files:
+    - path: /opt/ntnx-api-proxy/environment
+      mode: 0644
+      contents:
+        inline: |
+          FQDN=${fqdn}
+          NUTANIX_ENDPOINT=${nutanix_endpoint}
+          TRAEFIK_LOG_LEVEL=${traefik_log_level}
+          TRAEFIK_SERVERSTRANSPORT_ROOTCAS=${traefik_serverstransport_rootcas}
+          AUTH_PROXY=${auth_proxy}
+          NUTANIX_USERNAME=${nutanix_username}
+          NUTANIX_PASSWORD=${nutanix_password}
+          DASHBOARD=${dashboard}
+    - path: /opt/ntnx-api-proxy/cert/ca.crt
+      mode: 0644
+      contents:
+        inline: |
+          ${ca}
+    - path: /opt/ntnx-api-proxy/cert/tls.crt
+      mode: 0644
+      contents:
+        inline: |
+          ${cert}
+    - path: /opt/ntnx-api-proxy/cert/tls.key
+      mode: 0644
+      contents:
+        inline: |
+          ${key}
+systemd:
+  units:
+    - name: ntnx-api-proxy.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=Nutanix API Proxy
+        After=docker.service
+        Requires=docker.service
+        [Service]
+        TimeoutStartSec=0
+        ExecStartPre=-/usr/bin/docker rm --force ntnx-api-proxy
+        ExecStart=/usr/bin/docker run --name ntnx-api-proxy --volume "/opt/ntnx-api-proxy/cert:/etc/traefik/cert:ro" --pull always --env-file /opt/ntnx-api-proxy/environment --log-driver=journald --expose 9440 --net host ghcr.io/nutanix-cloud-native/ntnx-api-proxy
+        ExecStop=/usr/bin/docker stop ntnx-api-proxy
+        Restart=always
+        RestartSec=5s
+        [Install]
+        WantedBy=multi-user.target

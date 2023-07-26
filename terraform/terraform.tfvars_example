@@ -1,0 +1,18 @@
+nutanix_username = "admin"
+nutanix_password = "CHANGEME"
+nutanix_endpoint = "existing PC FQDN"
+nutanix_insecure = false
+nutanix_subnet   = "subnet"
+nutanix_cluster  = "pe-cluster"
+flatcar_image    = "flatcar_production_openstack.img"
+ssh_key          = "PATH TO SSH PUB KEY"
+vm_name          = "ntnx-api-proxy"
+vm_ip            = "IP address"
+
+fqdn                             = "PROXY FQDN"
+traefik_serverstransport_rootcas = "/etc/traefik/cert/ca.crt"
+ca                               = "cert/ca.crt" # optional
+cert                             = "cert/tls.crt"
+key                              = "cert/tls.key"
+traefik_log_level                = "info" # #possible values info / error
+dashboard                        = "enable" #possible values enable / disable

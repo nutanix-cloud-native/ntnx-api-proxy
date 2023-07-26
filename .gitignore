@@ -1,2 +1,8 @@
 cert.cer
 cert.key
+.terraform*
+*.tfstate*
+terraform.tfvars
+terraform/cert/tls.*
+terraform/cert/ca.*
+
