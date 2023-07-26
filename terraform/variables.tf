@@ -52,22 +52,28 @@ variable "traefik_serverstransport_rootcas" {
   default = ""
 }
 
-variable "ca" {
-  type = string
-}
-
-variable "cert" {
-  type = string
-}
-
-variable "key" {
-  type = string
-}
-
 variable "traefik_log_level" {
   type = string
 }
 
 variable "fqdn" {
   type = string
+}
+
+variable "container_image" {
+  type = string
+}
+
+variable "container_registry" {
+  type = string
+  default = ""
+}
+
+variable "registry_pass" {
+  type = string
+  default = ""
+}
+variable "registry_user" {
+  type = string
+  default = ""
 }

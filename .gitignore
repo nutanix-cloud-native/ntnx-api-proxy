@@ -5,4 +5,5 @@ cert.key
 terraform.tfvars
 terraform/cert/tls.*
 terraform/cert/ca.*
-
+terraform/cert/additional_ca.crt
+files/docker.config

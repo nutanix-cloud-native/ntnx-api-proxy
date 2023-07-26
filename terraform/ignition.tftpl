@@ -19,6 +19,11 @@ storage:
           NUTANIX_USERNAME=${nutanix_username}
           NUTANIX_PASSWORD=${nutanix_password}
           DASHBOARD=${dashboard}
+    - path: /etc/ssl/certs/additional_ca.pem
+      mode: 0644
+      contents:
+        inline: |
+          ${additional_ca}
     - path: /opt/ntnx-api-proxy/cert/ca.crt
       mode: 0644
       contents:
@@ -34,8 +39,23 @@ storage:
       contents:
         inline: |
           ${key}
+    - path: /home/core/.docker/config.json
+      mode: 0644
+      contents:
+        inline: |
+          ${docker_config}
 systemd:
   units:
+    - name: update-ca.service
+      enabled: true
+      contents: |
+        [Unit]
+        Description=updates ca-certificates
+        [Service]
+        Type=oneshot
+        ExecStart=/bin/bash -c 'update-ca-certificates'
+        [Install]
+        WantedBy=multi-user.target
     - name: ntnx-api-proxy.service
       enabled: true
       contents: |
@@ -44,9 +64,10 @@ systemd:
         After=docker.service
         Requires=docker.service
         [Service]
+        User=core
         TimeoutStartSec=0
         ExecStartPre=-/usr/bin/docker rm --force ntnx-api-proxy
-        ExecStart=/usr/bin/docker run --name ntnx-api-proxy --volume "/opt/ntnx-api-proxy/cert:/etc/traefik/cert:ro" --pull always --env-file /opt/ntnx-api-proxy/environment --log-driver=journald --expose 9440 --net host ghcr.io/nutanix-cloud-native/ntnx-api-proxy
+        ExecStart=/usr/bin/docker run --name ntnx-api-proxy --volume "/opt/ntnx-api-proxy/cert:/etc/traefik/cert:ro" --pull always --env-file /opt/ntnx-api-proxy/environment --log-driver=journald --expose 9440 --net host ${container_image}
         ExecStop=/usr/bin/docker stop ntnx-api-proxy
         Restart=always
         RestartSec=5s
