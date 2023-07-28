@@ -118,6 +118,10 @@ Proxy will be available at the following address: `https://FQDN:9440/dashboard/`
 
 
 
+## Alternate install
+
+You can explore the terraform install method in this [folder](terraform).
+
 ## Contributing
 
 See the [contributing docs](CONTRIBUTING.md).
