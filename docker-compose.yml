@@ -12,9 +12,6 @@ services:
       NUTANIX_ENDPOINT: pc.demo.com
       # TRAEFIK_LOG_LEVEL: "info"
       # TRAEFIK_SERVERSTRANSPORT_ROOTCAS: /etc/traefik/cert/ca.cer
-      # AUTH_PROXY: enable
-      # NUTANIX_USERNAME: admin
-      # NUTANIX_PASSWORD: Bik7Tr750!
       # DASHBOARD: enable
     volumes:
       - ./cert:/etc/traefik/cert
