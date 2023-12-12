@@ -96,7 +96,7 @@ Advanced configuration is possible using the following env variables:
 | TRAEFIK_LOG_LEVEL                           | Log level of proxy logs                 | false     | error   |
 | TRAEFIK_SERVERSTRANSPORT_ROOTCAS            | Path of the CA file to validate backend | false     | *none*  |
 | TRAEFIK_SERVERSTRANSPORT_INSECURESKIPVERIFY | Disable SSL certificate verification    | false     | false   |
-| TRAEFIK_METRICS_PROMETHEUS | enable metrics export via Prometheus | false     | false   |
+| TRAEFIK_METRICS_PROMETHEUS                  | enable metrics export via Prometheus    | false     | false   |
 
 
 ## Advanced configuration
@@ -121,7 +121,7 @@ Proxy will be available at the following address: `https://FQDN:9440/dashboard/`
 
 ## Alternate install
 
-You can explore the terraform install method in this [folder](terraform).
+You can explore the OpenTofu install method in this [folder](tofu).
 
 ## Contributing
 

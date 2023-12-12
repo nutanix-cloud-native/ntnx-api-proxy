@@ -1,4 +1,4 @@
-# Terraform Deployment
+# OpenTofu Deployment
 
 ## Prerequisite
 
@@ -10,16 +10,16 @@
 
 ## Deployment
 
-First customize `terraform.tfvars` by your demand and initialize Terraform with:
+First customize `tofu.tfvars` by your demand and initialize OpenTofu with:
 
 ```
-terraform init
+tofu init
 ```
 
-Apply the terraform manifest by running
+Apply the OpenTofu manifest by running
 
 ```
-terraform apply
+tofu apply
 ```
 
 ## Cleanup
@@ -27,7 +27,7 @@ terraform apply
 To remove the API-Proxy run
 
 ```
-terraform destroy
+tofu destroy
 ```
 
 ## Things to know and current limitations
