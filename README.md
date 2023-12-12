@@ -10,9 +10,13 @@
 
 ---
 
+Disclaimer: The software code configuration provided herein is intended solely for illustrative purposes and serves as an example. This configuration is not officially supported.  Users are advised that the example may be adapted for production environments, and its use is at their own risk. It is recommended that users seek professional advice for configuring the software in a production or critical environment.
+
+---
+
 This tool allows the concentration of Prism Central API calls to a single point to simplify filtering and limit access.
 
-This tool has been validated with the following components:
+This tool has been tested with the following components:
 
 PC v1 & v2 API
 - CSI 3.0
@@ -24,10 +28,8 @@ PC v3 API:
 - CSI 3.0
 
 PC v4 API:
-- CSI 3.0
-- vm-operator (beta)
+- CSI 3.0ea
 
-*** potential issue with v4 SDK and Auth Proxy ***
 
 ## How to use this image
 
