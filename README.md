@@ -54,7 +54,7 @@ services:
       # TRAEFIK_LOG_LEVEL: "info"
       # TRAEFIK_SERVERSTRANSPORT_ROOTCAS: /etc/traefik/cert/ca.cer
       # DASHBOARD: enable
-      # TRAEFIK_METRICS_PROMETHEUS: false
+      # TRAEFIK_METRICS_PROMETHEUS: "true"
     volumes:
       - ./cert:/etc/traefik/cert
       # - ./auth:/etc/traefik/auth
