@@ -10,9 +10,13 @@
 
 ---
 
+Disclaimer: The software code configuration provided herein is intended solely for illustrative purposes and serves as an example. This configuration is not officially supported.  Users are advised that the example may not be adapted for production environments, and its use is at their own risk. It is recommended that users seek professional advice for configuring the software in a production or critical environment.
+
+---
+
 This tool allows the concentration of Prism Central API calls to a single point to simplify filtering and limit access.
 
-This tool has been validated with the following components:
+This tool has been tested with the following components:
 
 PC v1 & v2 API
 - CSI 3.0
@@ -24,10 +28,10 @@ PC v3 API:
 - CSI 3.0
 
 PC v4 API:
-- CSI 3.0
-- vm-operator (beta)
+- CSI 3.0ea
 
-*** potential issue with v4 SDK and Auth Proxy ***
+Tools and APIs call may evolve over time, which may require updating the proxy configuration before upgrading any dependent solutions.
+
 
 ## How to use this image
 
@@ -45,15 +49,14 @@ services:
     restart: always
     ports:
       - 9440:9440
+      # - 8080:8080 #used for metrics export
     environment:
       FQDN: proxy-pc.demo.com
       NUTANIX_ENDPOINT: pc.demo.com
       # TRAEFIK_LOG_LEVEL: "info"
       # TRAEFIK_SERVERSTRANSPORT_ROOTCAS: /etc/traefik/cert/ca.cer
-      # AUTH_PROXY: enable
-      # NUTANIX_USERNAME: admin
-      # NUTANIX_PASSWORD: Bik7Tr750!
       # DASHBOARD: enable
+      # TRAEFIK_METRICS_PROMETHEUS: "true"
     volumes:
       - ./cert:/etc/traefik/cert
       # - ./auth:/etc/traefik/auth
@@ -95,7 +98,7 @@ Advanced configuration is possible using the following env variables:
 | TRAEFIK_LOG_LEVEL                           | Log level of proxy logs                 | false     | error   |
 | TRAEFIK_SERVERSTRANSPORT_ROOTCAS            | Path of the CA file to validate backend | false     | *none*  |
 | TRAEFIK_SERVERSTRANSPORT_INSECURESKIPVERIFY | Disable SSL certificate verification    | false     | false   |
-
+| TRAEFIK_METRICS_PROMETHEUS                  | enable metrics export via Prometheus    | false     | false   |
 
 
 ## Advanced configuration
@@ -117,6 +120,10 @@ You can enable the proxy dashboard by setting `DASHBOARD` to `enable`.
 Proxy will be available at the following address: `https://FQDN:9440/dashboard/`
 
 
+
+## Alternate install
+
+You can explore the OpenTofu install method in this [folder](tofu).
 
 ## Contributing
 

@@ -19,6 +19,7 @@ storage:
           NUTANIX_USERNAME=${nutanix_username}
           NUTANIX_PASSWORD=${nutanix_password}
           DASHBOARD=${dashboard}
+          TRAEFIK_METRICS_PROMETHEUS=${metrics}
     - path: /etc/ssl/certs/additional_ca.pem
       mode: 0644
       contents:
@@ -67,7 +68,7 @@ systemd:
         User=core
         TimeoutStartSec=0
         ExecStartPre=-/usr/bin/docker rm --force ntnx-api-proxy
-        ExecStart=/usr/bin/docker run --name ntnx-api-proxy --volume "/opt/ntnx-api-proxy/cert:/etc/traefik/cert:ro" --pull always --env-file /opt/ntnx-api-proxy/environment --log-driver=journald --expose 9440 --net host ${container_image}
+        ExecStart=/usr/bin/docker run --name ntnx-api-proxy --volume "/opt/ntnx-api-proxy/cert:/etc/traefik/cert:ro" --pull always --env-file /opt/ntnx-api-proxy/environment --log-driver=journald --expose 9440 --expose 8080 --net host ${container_image}
         ExecStop=/usr/bin/docker stop ntnx-api-proxy
         Restart=always
         RestartSec=5s

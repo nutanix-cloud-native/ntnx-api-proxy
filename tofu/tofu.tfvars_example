@@ -17,3 +17,4 @@ fqdn                             = "PROXY FQDN"
 traefik_serverstransport_rootcas = "/etc/traefik/cert/ca.crt"
 traefik_log_level                = "info" # #possible values info / error
 dashboard                        = "enable" #possible values enable / disable
+metrics                          = "true" #enable Prometheus Metrics

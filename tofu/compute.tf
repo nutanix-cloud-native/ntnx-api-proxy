@@ -57,7 +57,7 @@ data "ct_config" "ignition" {
     nutanix_endpoint                 = var.nutanix_endpoint
     ssh_key                          = file(var.ssh_key)
     fqdn                             = var.fqdn
-    additional_ca                      = indent(10,file("${path.module}/cert/additional_ca.crt"))
+    additional_ca                    = indent(10,file("${path.module}/cert/additional_ca.crt"))
     ca                               = indent(10,file("${path.module}/cert/ca.crt"))
     cert                             = indent(10,file("${path.module}/cert/tls.crt"))
     key                              = indent(10,file("${path.module}/cert/tls.key"))
@@ -67,6 +67,7 @@ data "ct_config" "ignition" {
     nutanix_username                 = var.nutanix_username
     nutanix_password                 = var.nutanix_password
     dashboard                        = var.dashboard
+    metrics                          = var.metrics
     container_image                  = "${var.container_registry}/${var.container_image}"
     docker_config                    = indent(10,templatefile("docker.config.tftpl", {
       container_registry = var.container_registry

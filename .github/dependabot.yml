@@ -5,7 +5,7 @@
 
 version: 2
 updates:
-  # Enable version updates for Go modules
+  # Enable version updates for Docker modules
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
