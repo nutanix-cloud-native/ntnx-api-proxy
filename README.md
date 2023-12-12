@@ -47,12 +47,14 @@ services:
     restart: always
     ports:
       - 9440:9440
+      # - 8080:8080 #used for metrics export
     environment:
       FQDN: proxy-pc.demo.com
       NUTANIX_ENDPOINT: pc.demo.com
       # TRAEFIK_LOG_LEVEL: "info"
       # TRAEFIK_SERVERSTRANSPORT_ROOTCAS: /etc/traefik/cert/ca.cer
       # DASHBOARD: enable
+      # TRAEFIK_METRICS_PROMETHEUS: false
     volumes:
       - ./cert:/etc/traefik/cert
       # - ./auth:/etc/traefik/auth
@@ -94,7 +96,7 @@ Advanced configuration is possible using the following env variables:
 | TRAEFIK_LOG_LEVEL                           | Log level of proxy logs                 | false     | error   |
 | TRAEFIK_SERVERSTRANSPORT_ROOTCAS            | Path of the CA file to validate backend | false     | *none*  |
 | TRAEFIK_SERVERSTRANSPORT_INSECURESKIPVERIFY | Disable SSL certificate verification    | false     | false   |
-
+| TRAEFIK_METRICS_PROMETHEUS | enable metrics export via Prometheus | false     | false   |
 
 
 ## Advanced configuration
