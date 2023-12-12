@@ -56,6 +56,10 @@ variable "traefik_log_level" {
   type = string
 }
 
+
+variable "metrics" {
+  type = string
+}
 variable "fqdn" {
   type = string
 }
