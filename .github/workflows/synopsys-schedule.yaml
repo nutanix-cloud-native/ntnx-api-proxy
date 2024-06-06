@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Black Duck Full Scan
-        uses: synopsys-sig/synopsys-action@v1.9.0
+        uses: synopsys-sig/synopsys-action@v1.10.0
         env:
           DETECT_PROJECT_NAME: ${{ github.event.repository.name }}
         with:
