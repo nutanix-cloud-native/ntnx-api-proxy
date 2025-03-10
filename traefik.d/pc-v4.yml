@@ -1,39 +1,39 @@
 # GET url
 {{ $GETendpoints := list
-"/api/prism/v4.0.a1/config/tasks"
-"/api/storage/v4.0.a3/config/volume-groups/"
-"/api/prism/v4.0.a1/config/categories"
-"/api/dataprotection/v4.0.a3/config/recovery-points"
-"/api/clustermgmt/v4.0.a2/config/clusters"
-"/api/networking/v4.0.a1/config/subnets"
-"/api/vmm/v4.0.a1/images"
-"/api/vmm/v4.0.a1/ahv/config/vms"
+"/api/prism/v4.0/config/tasks"
+"/api/volumes/v4.0/config/volume-groups/"
+"/api/prism/v4.0/config/categories"
+"/api/dataprotection/v4.0/config/recovery-points"
+"/api/clustermgmt/v4.0/config/clusters"
+"/api/networking/v4.0/config/subnets"
+"/api/vmm/v4.0/content/images"
+"/api/vmm/v4.0/ahv/config/vms"
 }}
 
 # POST url
 {{ $POSTendpoints := list
-"/api/storage/v4.0.a3/config/volume-groups"
-"/api/prism/v4.0.a1/config/categories"
-"/api/dataprotection/v4.0.a3/config/recovery-points"
-"/api/vmm/v4.0.a1/ahv/config/vms"
-"/api/vmm/v4.0.a1/images"
+"/api/volumes/v4.0/config/volume-groups"
+"/api/prism/v4.0/config/categories"
+"/api/dataprotection/v4.0/config/recovery-points"
+"/api/vmm/v4.0/ahv/config/vms"
+"/api/vmm/v4.0/content/images"
 }}
 
 # PUT url
 {{ $PUTendpoints := list
-"/api/vmm/v4.0.a1/ahv/config/vms"
+"/api/vmm/v4.0/ahv/config/vms"
 }}
 
 # PATCH url
 {{ $PATCHendpoints := list
-"/api/storage/v4.0.a3/config/volume-groups"
+"/api/volumes/v4.0/config/volume-groups"
 }}
 
 # DELETE url
 {{ $DELETEendpoints := list
-"/api/storage/v4.0.a3/config/volume-groups"
-"/api/vmm/v4.0.a1/ahv/config/vms"
-"/api/vmm/v4.0.a1/images"
+"/api/volumes/v4.0/config/volume-groups"
+"/api/vmm/v4.0/ahv/config/vms"
+"/api/vmm/v4.0/content/images"
 }}
 
 {{define "route"}}
