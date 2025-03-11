@@ -4,6 +4,7 @@ cert.key
 *.tfstate*
 terraform.tfvars
 tofu/cert/tls.*
+tofu/cert/tofu.tfvars
 tofu/cert/ca.*
 tofu/cert/additional_ca.crt
 files/docker.config

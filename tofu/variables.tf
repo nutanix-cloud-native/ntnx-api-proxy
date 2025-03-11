@@ -52,6 +52,10 @@ variable "traefik_serverstransport_rootcas" {
   default = ""
 }
 
+variable "traefik_serverstransport_insecureskipverify" {
+  type = string
+  default = ""
+}
 variable "traefik_log_level" {
   type = string
 }

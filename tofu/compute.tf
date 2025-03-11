@@ -34,7 +34,7 @@ resource "nutanix_virtual_machine" "ntnx-api-proxy" {
     disk_size_mib   = 10000
     data_source_reference = {
         kind = "image"
-        uuid = data.nutanix_image.flatcar.id
+        uuid = nutanix_image.flatcar.id
       }
   
     device_properties {
@@ -62,6 +62,7 @@ data "ct_config" "ignition" {
     key                              = indent(10,file("${path.module}/cert/tls.key"))
     traefik_log_level                = var.traefik_log_level
     traefik_serverstransport_rootcas = var.traefik_serverstransport_rootcas
+    traefik_serverstransport_insecureskipverify = var.traefik_serverstransport_insecureskipverify
     auth_proxy                       = var.auth_proxy
     nutanix_username                 = var.nutanix_username
     nutanix_password                 = var.nutanix_password

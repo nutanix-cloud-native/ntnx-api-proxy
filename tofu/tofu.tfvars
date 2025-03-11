@@ -1,0 +1,21 @@
+nutanix_username   = "admin"
+nutanix_password   = "Nutanix.123"
+nutanix_endpoint   = "pc.dragon.cloudnative.nvdlab.net"
+nutanix_insecure   = false
+nutanix_subnet     = "User7"
+nutanix_cluster    = "dragon"
+flatcar_image      = "https://stable.release.flatcar-linux.net/amd64-usr/current/flatcar_production_openstack_image.img"
+ssh_key            = "~/.ssh/hpoc.pub"
+vm_name            = "ntnx-api-proxy"
+vm_ip              = "10.124.254.135"
+container_registry = "harbor.infrastructure.cloudnative.nvdlab.net"
+container_image    = "nutanix-dev/ntnx-api-proxy"
+registry_user      = ""
+registry_pass      = ""
+
+fqdn                                        = "pc-proxy.dragon.cloudnative.nvdlab.net"
+traefik_serverstransport_insecureskipverify = "false"
+traefik_serverstransport_rootcas            = "/etc/traefik/cert/ca.crt"
+traefik_log_level                           = "info" # #possible values info / error
+dashboard                                   = "enable" #possible values enable / disable
+metrics                                     = "true" #enable Prometheus Metrics
