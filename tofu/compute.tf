@@ -8,12 +8,11 @@ data "nutanix_cluster" "cluster" {
   name = var.nutanix_cluster
 }
 
-data "nutanix_image" "flatcar" {
+resource "nutanix_image" "flatcar" {
 
-  image_name = var.flatcar_image
-
+  source_uri = var.flatcar_image
+  name = "flatcar_production_openstack_image"
 }
-
 resource "nutanix_virtual_machine" "ntnx-api-proxy" {
 
   name                 = var.vm_name

@@ -15,11 +15,13 @@ storage:
           NUTANIX_ENDPOINT=${nutanix_endpoint}
           TRAEFIK_LOG_LEVEL=${traefik_log_level}
           TRAEFIK_SERVERSTRANSPORT_ROOTCAS=${traefik_serverstransport_rootcas}
+          TRAEFIK_SERVERSTRANSPORT_INSECURESKIPVERIFY=${insecure}
           AUTH_PROXY=${auth_proxy}
           NUTANIX_USERNAME=${nutanix_username}
           NUTANIX_PASSWORD=${nutanix_password}
           DASHBOARD=${dashboard}
           TRAEFIK_METRICS_PROMETHEUS=${metrics}
+          TRAEFIK_METRICS_PROMETHEUS_ADDROUTERSLABELS=${metrics}
     - path: /etc/ssl/certs/additional_ca.pem
       mode: 0644
       contents:

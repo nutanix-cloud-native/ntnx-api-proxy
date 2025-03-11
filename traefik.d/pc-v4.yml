@@ -8,6 +8,12 @@
 "/api/networking/v4.0/config/subnets"
 "/api/vmm/v4.0/content/images"
 "/api/vmm/v4.0/ahv/config/vms"
+"/api/clustermgmt/v4.0.b2/config/clusters" 
+"/api/prism/v4.0.b1/config/categories"
+"/api/vmm/v4.0.b1/ahv/config/vms"
+"/api/clustermgmt/v4.0.b2/config/storage-containers"
+"/api/volumes/v4.0.b1/config/volume-groups"
+"/api/prism/v4.0.b1/config/tasks"
 }}
 
 # POST url
@@ -17,6 +23,8 @@
 "/api/dataprotection/v4.0/config/recovery-points"
 "/api/vmm/v4.0/ahv/config/vms"
 "/api/vmm/v4.0/content/images"
+"/api/prism/v4.0.b1/config/categories"
+"/api/volumes/v4.0.b1/config/volume-groups"
 }}
 
 # PUT url
@@ -27,6 +35,7 @@
 # PATCH url
 {{ $PATCHendpoints := list
 "/api/volumes/v4.0/config/volume-groups"
+"/api/volumes/v4.0.b1/config/volume-groups"
 }}
 
 # DELETE url
@@ -37,7 +46,7 @@
 }}
 
 {{define "route"}}
-    {{ randAlphaNum 10 }}:
+   {{ .Prefix | trimPrefix "/api/" | replace "/" "." | replace "_" "#" }}-{{ .Method | lower }}:
       entryPoints:
         - "proxy"
       rule: "Host(`{{ default "FQDN_not_configured" (env "FQDN") }}`) && PathPrefix(`{{.Prefix}}`) && Method(`{{.Method}}`)"

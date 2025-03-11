@@ -1,3 +1,3 @@
 build:
-	docker build -t nxlab.fr/tuxtof/ntnx-api-proxy --platform linux/amd64 .
-	docker push nxlab.fr/tuxtof/ntnx-api-proxy
+	docker build -t harbor.infrastructure.cloudnative.nvdlab.net/nutanix-dev/ntnx-api-proxy --platform linux/amd64 .
+	docker push harbor.infrastructure.cloudnative.nvdlab.net/nutanix-dev/ntnx-api-proxy
