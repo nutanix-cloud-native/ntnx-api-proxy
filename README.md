@@ -18,17 +18,11 @@ This tool allows the concentration of Prism Central API calls to a single point 
 
 This tool has been tested with the following components:
 
-PC v1 & v2 API
-- CSI 3.0
-
-PC v3 API:
-- CAPX v1.2.3
-- CCM v0.3.2
+- CSI v3.0.0, v3.2.0
+- CAPX v1.2.3, v1.5.3
+- CCM v0.3.2, v0.5.0
 - Openshift IPI 4.13
-- CSI 3.0
-
-PC v4 API:
-- CSI 3.0ea
+- NKP 2.14
 
 Tools and APIs call may evolve over time, which may require updating the proxy configuration before upgrading any dependent solutions.
 

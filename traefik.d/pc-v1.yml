@@ -16,7 +16,7 @@
 }}
 
 {{define "route"}}
-    {{ randAlphaNum 10 }}:
+    {{ .Method | lower }}-{{ .Prefix | replace "/PrismGateway/services/rest/" "" | replace "/" "-" }}:
       entryPoints:
         - "proxy"
       rule: "Host(`{{ default "FQDN_not_configured" (env "FQDN") }}`) && PathPrefix(`{{.Prefix}}`) && Method(`{{.Method}}`)"

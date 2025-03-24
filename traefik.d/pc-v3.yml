@@ -9,6 +9,7 @@
 "/api/nutanix/v3/subnets"
 "/api/nutanix/v3/images"
 "/api/nutanix/v3/tasks"
+"/api/nutanix/v3/categories/KubernetesClusterName"
 }}
 
 # POST url
@@ -22,6 +23,7 @@
 "/api/nutanix/v3/vms"
 "/api/nutanix/v3/images"
 "/api/nutanix/v3/categories/kubernetes-io-cluster"
+"/api/nutanix/v3/categories/KubernetesClusterName"
 "/api/nutanix/v3/groups"
 }}
 
@@ -41,7 +43,7 @@
 }}
 
 {{define "route"}}
-    {{ randAlphaNum 10 }}:
+    {{ .Method | lower }}-{{ .Prefix | replace "/api/nutanix/" "" | replace "/" "-" }}:
       entryPoints:
         - "proxy"
       rule: "Host(`{{ default "FQDN_not_configured" (env "FQDN") }}`) && PathPrefix(`{{.Prefix}}`) && Method(`{{.Method}}`)"
