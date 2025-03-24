@@ -1,3 +1,3 @@
 build:
-	docker build -t nxlab.fr/tuxtof/ntnx-api-proxy --platform linux/amd64 .
-	docker push nxlab.fr/tuxtof/ntnx-api-proxy
+	docker build -t ghcr.io/nutanix-cloud-native/ntnx-api-proxy:traefik3 --platform linux/amd64 .
+	docker push ghcr.io/nutanix-cloud-native/ntnx-api-proxy:traefik3
