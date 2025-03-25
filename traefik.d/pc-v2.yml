@@ -16,7 +16,7 @@
 }}
 
 {{define "route"}}
-    {{ .Method | lower }}-{{ .Prefix | replace "/api/nutanix/" "" | replace "/" "-" }}:
+    {{ .Prefix | trimPrefix "/api/nutanix/" | replace "/" "." | replace "_" "#" }}-{{ .Method | lower }}:
       entryPoints:
         - "proxy"
       rule: "Host(`{{ default "FQDN_not_configured" (env "FQDN") }}`) && PathPrefix(`{{.Prefix}}`) && Method(`{{.Method}}`)"
