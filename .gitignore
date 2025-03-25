@@ -7,3 +7,4 @@ tofu/cert/tls.*
 tofu/cert/ca.*
 tofu/cert/additional_ca.crt
 files/docker.config
+tofu/tofu.tfvars

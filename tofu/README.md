@@ -5,8 +5,8 @@
 - Collect static IP for the API-Proxy
 - Create a DNS-record pointing to that IP
 - put necessary SSL-Certs as `tls.crt`, `tls.key` and `ca.crt` in `cert` Subfolder
-- Download, extract and upload flatcar-image into Nutanix Image Service
-  (https://stable.release.flatcar-linux.net/amd64-usr/current/flatcar_production_openstack_image.img.gz)
+- Upload flatcar-image into Nutanix Image Service
+  (https://stable.release.flatcar-linux.net/amd64-usr/current/flatcar_production_openstack_image.img)
 
 ## Deployment
 
