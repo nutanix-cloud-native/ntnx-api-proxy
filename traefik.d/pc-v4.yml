@@ -23,7 +23,6 @@
 "/api/networking/v4.0/config/subnets"
 "/api/vmm/v4.0/content/images"
 "/api/vmm/v4.0/ahv/config/vms"
-"/api/clustermgmt/v4.0.b2/config/clusters" 
 "/api/dataprotection/v4.0.b1/config/recovery-points"
 "/api/files/v4.0/config/file-servers"
 }}
