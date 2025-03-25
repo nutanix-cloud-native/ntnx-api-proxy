@@ -22,7 +22,8 @@ This tool has been tested with the following components:
 - CAPX v1.2.3, v1.5.3
 - CCM v0.3.2, v0.5.0
 - Openshift IPI 4.13
-- NKP 2.14
+- NKP 2.14.0
+- COSI 0.4.0
 
 Tools and APIs call may evolve over time, which may require updating the proxy configuration before upgrading any dependent solutions.
 

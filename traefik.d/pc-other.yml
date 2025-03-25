@@ -1,0 +1,51 @@
+# GET url
+{{ $GETendpoints := list
+
+}}
+
+# POST url
+{{ $POSTendpoints := list
+"/oss/iam_proxy/buckets_access_keys"
+}}
+
+# PUT url
+{{ $PUTendpoints := list
+
+}}
+
+# PATCH url
+{{ $PATCHendpoints := list
+
+}}
+
+# DELETE url
+{{ $DELETEendpoints := list
+"/oss/iam_proxy/users"
+}}
+
+{{define "route"}}
+    {{ .Prefix | trimPrefix "/" | replace "/" "." | replace "_" "#" }}-{{ .Method | lower }}:
+      entryPoints:
+        - "proxy"
+      rule: "Host(`{{ default "FQDN_not_configured" (env "FQDN") }}`) && PathPrefix(`{{.Prefix}}`) && Method(`{{.Method}}`)"
+      service: nutanix-pc
+      tls: {}
+{{end}}
+
+http:
+  routers:
+{{range $prefix := $GETendpoints}}
+{{ template "route" dict "Prefix" $prefix "Method" "GET"}}
+{{end}}
+{{range $prefix := $POSTendpoints}}
+{{ template "route" dict "Prefix" $prefix "Method" "POST"}}
+{{end}}
+{{range $prefix := $PUTendpoints}}
+{{ template "route" dict "Prefix" $prefix "Method" "PUT"}}
+{{end}}
+{{range $prefix := $PATCHendpoints}}
+{{ template "route" dict "Prefix" $prefix "Method" "PATCH"}}
+{{end}}
+{{range $prefix := $DELETEendpoints}}
+{{ template "route" dict "Prefix" $prefix "Method" "DELETE"}}
+{{end}}
