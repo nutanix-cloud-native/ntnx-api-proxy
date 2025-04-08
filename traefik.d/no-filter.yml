@@ -1,0 +1,22 @@
+{{ if eq (env "NOFILTER") "true" }}
+http:
+  routers:
+    no-filter:
+      entryPoints:
+        - "proxy"
+      rule: "Host(`{{ default "FQDN_not_configured" (env "FQDN") }}`) && PathPrefix(`/api/nutanix`)"
+      service: nutanix-pc
+      priority: 1024
+      tls: {}
+{{ else }}
+http:
+  routers:
+    filter:
+      entryPoints:
+        - "proxy"
+      rule: "Host(`{{ default "FQDN_not_configured" (env "FQDN") }}`) && PathPrefix(`/api/nutanix`)"
+      service: noop@internal
+      priority: 1024
+      tls: {}
+{{end}}
+

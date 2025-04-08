@@ -16,7 +16,8 @@ services:
       #TRAEFIK_ACCESSLOG_FORMAT: "json"
       # TRAEFIK_SERVERSTRANSPORT_ROOTCAS: /etc/traefik/cert/ca.cer
       # DASHBOARD: enable
-      # TRAEFIK_METRICS_PROMETHEUS="true"
+      # TRAEFIK_METRICS_PROMETHEUS: true
+      # NOFILTER: true
     volumes:
       - ./cert:/etc/traefik/cert
       # - ./auth:/etc/traefik/auth

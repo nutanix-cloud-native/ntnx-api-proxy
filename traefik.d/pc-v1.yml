@@ -21,6 +21,7 @@
         - "proxy"
       rule: "Host(`{{ default "FQDN_not_configured" (env "FQDN") }}`) && PathPrefix(`{{.Prefix}}`) && Method(`{{.Method}}`)"
       service: nutanix-pc
+      priority: 1111
       tls: {}
 {{end}}
 

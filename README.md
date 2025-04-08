@@ -49,12 +49,14 @@ services:
       FQDN: proxy-pc.demo.com
       NUTANIX_ENDPOINT: pc.demo.com
       # TRAEFIK_LOG_LEVEL: "info"
+      #TRAEFIK_LOG_FORMAT: "json"
+      #TRAEFIK_ACCESSLOG_FORMAT: "json"
       # TRAEFIK_SERVERSTRANSPORT_ROOTCAS: /etc/traefik/cert/ca.cer
       # DASHBOARD: enable
-      # TRAEFIK_METRICS_PROMETHEUS: "true"
+      # TRAEFIK_METRICS_PROMETHEUS: true
+      # NOFILTER: true
     volumes:
       - ./cert:/etc/traefik/cert
-      # - ./auth:/etc/traefik/auth
 ```
 
 Valid certificate files are required in the file locations below:
@@ -94,6 +96,7 @@ Advanced configuration is possible using the following env variables:
 | TRAEFIK_SERVERSTRANSPORT_ROOTCAS            | Path of the CA file to validate backend | false     | *none*  |
 | TRAEFIK_SERVERSTRANSPORT_INSECURESKIPVERIFY | Disable SSL certificate verification    | false     | false   |
 | TRAEFIK_METRICS_PROMETHEUS                  | enable metrics export via Prometheus    | false     | false   |
+| NOFILTER                                    | disable filter mode                     | false     | false   |
 
 
 ## Advanced configuration
