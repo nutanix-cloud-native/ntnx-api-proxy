@@ -27,15 +27,13 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  # filebeat:
-  #   image: docker.elastic.co/beats/filebeat:8.17.3
+  # vector:
+  #   image: timberio/vector:0.46.0-debian
   #   user: root
   #   environment:
-  #     ELASTICSEARCH_HOSTS: ${ELASTICSEARCH_HOSTS}
-  #     ELASTICSEARCH_USERNAME: elastic
-  #     ELASTICSEARCH_PASSWORD: ${ELASTICSEARCH_PASSWORD}
+  #     VLOGS_URI: ${VLOGS_URI}
   #   volumes:
-  #     - ./filebeat.yml:/usr/share/filebeat/filebeat.yml
+  #     - ./vector.yaml:/etc/vector/vector.yaml
   #     - /var/lib/docker/containers:/var/lib/docker/containers:ro
   #     - /var/run/docker.sock:/var/run/docker.sock
   #   depends_on:
