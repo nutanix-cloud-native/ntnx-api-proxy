@@ -28,6 +28,10 @@ transforms:
     source: |
       .message = parse_json(.message) ?? .message
 
+      if is_object(.message) && (is_null(.message.message) || .message.message == "") {
+        .message.message = "access"
+      }
+
 # Print parsed logs to stdout
 sinks:
   # print:
@@ -55,8 +59,9 @@ sinks:
         AccountID: "0"
         ProjectID: "0"
         VL-Stream-Fields: container_name
-        VL-Msg-Field: message.RequestPath
+        VL-Msg-Field: message.message
         VL-Time-Field: timestamp
+        VL-Extra-Fields: cluster=pc-proxy
 # Vector's GraphQL API (disabled by default)
 # Uncomment to try it out with the `vector top` command or
 # in your browser at http://localhost:8686
