@@ -28,7 +28,7 @@ services:
         max-file: "3"
 
   # vector:
-  #   image: timberio/vector:0.46.0-debian
+  #   image: timberio/vector:0.46.1-debian
   #   user: root
   #   environment:
   #     VLOGS_URI: ${VLOGS_URI}
