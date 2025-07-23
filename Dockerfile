@@ -1,4 +1,4 @@
-FROM traefik:3.4.4
+FROM traefik:3.5.0
 
 ENV TRAEFIK_PROVIDERS_FILE_DIRECTORY="/etc/traefik/traefik.d/" 
 ENV TRAEFIK_ENTRYPOINTS_proxy_ADDRESS=":9440"
