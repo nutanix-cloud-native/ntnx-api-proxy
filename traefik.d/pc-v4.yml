@@ -77,6 +77,9 @@
       tls: {}
 {{end}}
 
+{{ $noFilter := env "NOFILTER" }}
+{{ if or (not $noFilter) (ne $noFilter "true") }}
+
 http:
   routers:
 {{range $prefix := $GETendpoints}}
@@ -94,3 +97,5 @@ http:
 {{range $prefix := $DELETEendpoints}}
 {{ template "route" dict "Prefix" $prefix "Method" "DELETE"}}
 {{end}}
+
+{{ end }}

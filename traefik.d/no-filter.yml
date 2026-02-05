@@ -4,7 +4,7 @@ http:
     no-filter:
       entryPoints:
         - "proxy"
-      rule: "Host(`{{ default "FQDN_not_configured" (env "FQDN") }}`) && PathPrefix(`/api/nutanix`)"
+      rule: "Host(`{{ default "FQDN_not_configured" (env "FQDN") }}`) && PathPrefix(`/api`)"
       service: nutanix-pc
       priority: 1024
       tls: {}
@@ -14,7 +14,7 @@ http:
     filter:
       entryPoints:
         - "proxy"
-      rule: "Host(`{{ default "FQDN_not_configured" (env "FQDN") }}`) && PathPrefix(`/api/nutanix`)"
+      rule: "Host(`{{ default "FQDN_not_configured" (env "FQDN") }}`) && PathPrefix(`/api`)"
       service: noop@internal
       priority: 1024
       tls: {}
