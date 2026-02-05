@@ -5,6 +5,6 @@ http:
       rule: (Host(`{{ default "FQDN_not_configured" (env "FQDN") }}`) && PathPrefix(`/api`) || PathPrefix(`/dashboard`))
       service: api@internal
       entryPoints:
-        - "proxy"
+        - "web"
       tls: {}
 {{end}}

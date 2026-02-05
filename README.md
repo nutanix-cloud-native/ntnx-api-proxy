@@ -115,7 +115,7 @@ ex: `TRAEFIK_SERVERSTRANSPORT_ROOTCAS=/etc/traefik/cert/ca.crt`
 
 You can enable the proxy dashboard by setting `DASHBOARD` to `enable`.
 
-Proxy will be available at the following address: `https://FQDN:9440/dashboard/`
+Proxy will be available at the following address: `https://FQDN/dashboard/`
 
 
 
